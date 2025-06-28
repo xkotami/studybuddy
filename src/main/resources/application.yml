@@ -1,0 +1,43 @@
+# application.yaml
+spring:
+  application:
+    name: studybuddy
+
+  # ── DataSource common bits (profile-specific files override URL / creds) ──
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  # ── JPA / Hibernate ──
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update          # overridden in prod
+    show-sql: true              # overridden in prod
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ── Basic in-memory user (useful for Swagger / Actuator during dev & tests) ──
+  security:
+    user:
+      name: swagger
+      password: swagger
+
+# ── Server ──
+server:
+  servlet:
+    context-path: /
+  error:
+    include-message: always     # helpful during debugging
+
+# ── Logging ──
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# ── SpringDoc OpenAPI (Swagger UI) ──
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method

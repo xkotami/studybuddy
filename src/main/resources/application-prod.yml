@@ -1,0 +1,37 @@
+# application-prod.yaml
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: ${DB_URL}                 # e.g. jdbc:postgresql://prod-host:5432/studybuddy
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 5
+      idle-timeout: 600000         # 10 min
+      max-lifetime: 1800000        # 30 min
+      pool-name: ProdHikariPool
+
+  jpa:
+    hibernate:
+      ddl-auto: validate           # ensure schema matches, never auto-update in prod
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  security:
+    user:
+          name: ''
+          password: ''
+
+# Security: disable in-memory swagger user; rely on real auth mechanism
+
+# Reduce log noise in production
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql.BasicBinder: WARN
