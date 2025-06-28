@@ -27,7 +27,7 @@ spring:
         format_sql: true
         highlight_sql: true
 jwt:
-  secret: d2ViNC1ub3Qtc28tc2VjcmV0LWFjY2Vzcy1zZWNyZXQ=
+  secret: 306bdb615d71bc20501f67e7db01a10d408773c1956e5dfd38622326e5f28051
   expirationMs: 300000
 server:
   port: 3000
