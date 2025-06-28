@@ -1,0 +1,33 @@
+# application-dev.yaml
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  security:
+    user:
+      name: test
+      password: "test123"
+      roles: USER
+  datasource:
+    url: jdbc:postgresql://localhost:5432/studybuddy
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      pool-name: DevHikariPool
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop     # keep schema in sync automatically
+    show-sql: true          # print SQL in the console
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+jwt:
+  secret: 306bdb615d71bc20501f67e7db01a10d408773c1956e5dfd38622326e5f28051
+  expirationMs: 300000
+server:
+  port: 3000

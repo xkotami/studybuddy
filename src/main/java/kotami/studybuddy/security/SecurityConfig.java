@@ -53,7 +53,15 @@ public class SecurityConfig {
                 // route security
                 .authorizeHttpRequests(auth -> auth
                         // public endpoints
-                        .requestMatchers("/api/auth/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs",
+                                "/**" // remove this in prod
+                        )
+                                .permitAll()
                         // everything else is secured
                         .anyRequest().authenticated())
 
