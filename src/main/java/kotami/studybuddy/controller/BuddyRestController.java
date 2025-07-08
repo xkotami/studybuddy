@@ -2,9 +2,7 @@ package kotami.studybuddy.controller;
 
 import kotami.studybuddy.entity.Buddy;
 import kotami.studybuddy.service.BuddyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +18,14 @@ public class BuddyRestController {
     @GetMapping
     public List<Buddy> getBuddies() {
         return buddyService.getBuddies();
+    }
+
+    // needs fixing
+    @PutMapping("/{itemId}/{buddyId}")
+    public Buddy addItemToBuddy(@PathVariable Integer itemId, @PathVariable Integer buddyId) {
+        Buddy result = buddyService.addItemToBuddyById(itemId, buddyId);
+        return result;
+
     }
 
 }

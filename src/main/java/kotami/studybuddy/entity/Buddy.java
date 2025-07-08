@@ -1,9 +1,9 @@
 package kotami.studybuddy.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,25 +30,41 @@ public class Buddy {
 
     @Setter
     @OneToMany(mappedBy = "buddy",
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonIgnore
+    @JsonManagedReference
     private List<Item> items = new ArrayList<>();
 
+    // custom dateAdded calculator
+    @Getter
+    @Setter
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date age;
+    private Date dateAdded;
 
     // No-arg constructor required by JPA
     public Buddy() {
     }
 
     // Convenience constructor
-    public Buddy(String name, Date age) {
+    public Buddy(String name, Date dateAdded) {
         this.name = name;
-        this.age = age;
+        this.dateAdded = dateAdded;
     }
 
     // Getters and setters
 
+    public int getAge() {
+        return (int) ((new Date().getTime() - dateAdded.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    // add item to list
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Long id) {
+        getItems().removeIf(item -> item.getId().equals(id));
+    }
 }

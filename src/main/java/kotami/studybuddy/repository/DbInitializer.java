@@ -37,27 +37,29 @@ public class DbInitializer {
 
         Buddy buddyBob = new Buddy();
         buddyBob.setName("Bob");
+        buddyBob.setDateAdded(new Date());
         alice.addBuddy(buddyBob);
 
         Item book = new Item();
-        book.setName("Java Programming");
-        book.setCategory("Education");
+        book.setName("Java Programming book");
+        book.setCategory("Books");
         book.setDescription("A comprehensive guide to Java");
         book.setDateAdded(new Date());
-        book.setPrice(45);
+        book.setPrice(20);
         buddyBob.getItems().add(book);
         book.setBuddy(buddyBob);
 
         Buddy buddyCarol = new Buddy();
         buddyCarol.setName("Carol");
+        buddyCarol.setDateAdded(new Date());
         alice.addBuddy(buddyCarol);
 
         Item notebook = new Item();
-        notebook.setName("Notebook");
-        notebook.setCategory("Stationery");
-        notebook.setDescription("A lined notebook for notes");
+        notebook.setName("Macbook");
+        notebook.setCategory("Electronics");
+        notebook.setDescription("A fancy laptop");
         notebook.setDateAdded(new Date());
-        notebook.setPrice(5);
+        notebook.setPrice(1100);
         buddyCarol.getItems().add(notebook);
         notebook.setBuddy(buddyCarol);
 
@@ -66,6 +68,7 @@ public class DbInitializer {
 
         Buddy buddyEve = new Buddy();
         buddyEve.setName("Eve");
+        buddyEve.setDateAdded(new Date());
         dave.addBuddy(buddyEve);
 
         Item pen = new Item();
@@ -73,7 +76,7 @@ public class DbInitializer {
         pen.setCategory("Stationery");
         pen.setDescription("Smooth-writing fountain pen");
         pen.setDateAdded(new Date());
-        pen.setPrice(15);
+        pen.setPrice(10);
         buddyEve.getItems().add(pen);
         pen.setBuddy(buddyEve);
 
